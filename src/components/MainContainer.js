@@ -8,7 +8,8 @@ const MainContainer = () => {
 
   if (!movies) return;
 
-  const mainMovie = movies[0];
+  // Get a random movie from the list of movies
+  const mainMovie = movies[Math.floor(Math.random() * movies.length)];
 
   const { original_title, overview, id } = mainMovie;
 
