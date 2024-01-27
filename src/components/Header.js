@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser, removeUser } from "../utils/userSlice";
+import { useNavigate } from "react-router-dom";
+import { setLanguage } from "../utils/configSlice";
 import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
+import { auth } from "../utils/firebase";
 import { toggleSearch } from "../utils/gptSlice";
+import { addUser, removeUser } from "../utils/userSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -52,7 +53,10 @@ const Header = () => {
       <img width="200" src={LOGO} alt="logo" />
       {userData.user && (
         <div className="flex">
-          <select className="mr-2 text-white bg-gray-700 hover:bg-slate-800 px-4 py-2 rounded-lg shadow-lg">
+          <select
+            className="mr-2 text-white bg-gray-700 hover:bg-slate-800 px-4 py-2 rounded-lg shadow-lg"
+            onChange={(e) => dispatch(setLanguage(e.target.value))}
+          >
             {SUPPORTED_LANGUAGES.map((language) => (
               <option value={language.identifier}>{language.name}</option>
             ))}
