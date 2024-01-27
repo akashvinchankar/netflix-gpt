@@ -1,14 +1,14 @@
 import React from "react";
-import GPTSearchBar from "./GPTSearchBar";
-import GPTMovieSuggestions from "./GPTMovieSuggestions";
 import { BACKGROUND_IMAGE } from "../utils/constants";
+import GPTMovieSuggestions from "./GPTMovieSuggestions";
+import GPTSearchBar from "./GPTSearchBar";
 
 const GPTSearchPage = () => {
   return (
     <div>
       <div>
         <img
-          className="absolute -z-10 opacity-90"
+          className="absolute -z-10 opacity-95"
           src={BACKGROUND_IMAGE}
           alt="background"
         />
