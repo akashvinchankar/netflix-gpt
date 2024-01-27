@@ -61,7 +61,9 @@ const Header = () => {
             value={selectedLanguage}
           >
             {SUPPORTED_LANGUAGES.map((language) => (
-              <option value={language.identifier}>{language.name}</option>
+              <option value={language.identifier}>
+                {language.displayName}
+              </option>
             ))}
           </select>
           <button
