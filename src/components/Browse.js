@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
-import GPTSearch from "./GPTSearch";
+import GPTSearch from "./GPTSearchPage";
 import { useSelector } from "react-redux";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import usePopularMovies from "../hooks/usePopularMovies";
@@ -17,9 +17,14 @@ const Browse = () => {
   return (
     <div>
       <Header />
-      {gptSearch && <GPTSearch />}
-      <MainContainer />
-      <SecondaryContainer />
+      {gptSearch ? (
+        <GPTSearch />
+      ) : (
+        <>
+          <MainContainer />
+          <SecondaryContainer />
+        </>
+      )}
       {/* 
       - Main Container
         - Background Video
