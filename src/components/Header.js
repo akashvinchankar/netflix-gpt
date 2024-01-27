@@ -14,6 +14,7 @@ const Header = () => {
   const navigate = useNavigate();
   const userData = useSelector((store) => store.user);
   const selectedLanguage = useSelector((store) => store.config.language);
+  const showGptSearch = useSelector((store) => store.gpt.toggleSearch);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -61,7 +62,7 @@ const Header = () => {
             value={selectedLanguage}
           >
             {SUPPORTED_LANGUAGES.map((language) => (
-              <option value={language.identifier}>
+              <option value={language.identifier} key={language.identifier}>
                 {language.displayName}
               </option>
             ))}
@@ -70,7 +71,9 @@ const Header = () => {
             className="mr-2 bg-purple-800 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-purple-900"
             onClick={toggleGptSearch}
           >
-            {searchLanguageConstants[selectedLanguage].GPTSearch}
+            {showGptSearch
+              ? searchLanguageConstants[selectedLanguage].GPTSearch
+              : "Home"}
           </button>
           <img
             src={userData?.user?.photoURL}
