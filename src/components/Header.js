@@ -7,11 +7,13 @@ import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
 import { auth } from "../utils/firebase";
 import { toggleSearch } from "../utils/gptSlice";
 import { addUser, removeUser } from "../utils/userSlice";
+import { searchLanguageConstants } from "../utils/languageConstants";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector((store) => store.user);
+  const selectedLanguage = useSelector((store) => store.config.language);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -65,7 +67,7 @@ const Header = () => {
             className="mr-2 bg-purple-800 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-purple-900"
             onClick={toggleGptSearch}
           >
-            GPT Search
+            {searchLanguageConstants[selectedLanguage].GPTSearch}
           </button>
           <img
             src={userData?.user?.photoURL}
@@ -75,7 +77,9 @@ const Header = () => {
           />
           <div className="px-2 text-white">
             <p>{userData?.user?.displayName}</p>
-            <button onClick={handleSignOut}>(Sign Out)</button>
+            <button onClick={handleSignOut}>
+              ({searchLanguageConstants[selectedLanguage].signOut})
+            </button>
           </div>
         </div>
       )}

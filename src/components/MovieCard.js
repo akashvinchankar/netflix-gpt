@@ -1,7 +1,11 @@
 import React from "react";
 import { IMG_CDN_URL, SUPPORTED_LANGUAGES } from "../utils/constants";
+import { useSelector } from "react-redux";
+import { searchLanguageConstants } from "../utils/languageConstants";
 
 const MovieCard = ({ movie }) => {
+  const selectedLanguage = useSelector((store) => store.config.language);
+
   return (
     <div className="w-56 pr-4 relative overflow-hidden group">
       <img
@@ -13,15 +17,21 @@ const MovieCard = ({ movie }) => {
         <h1 className="text-white text-lg font-semibold mb-2">{movie.title}</h1>
         <div className="flex flex-col text-white">
           <p>
-            Language:
+            {searchLanguageConstants[selectedLanguage].language}:
             {
               SUPPORTED_LANGUAGES.find(
                 (language) => language.identifier === movie?.original_language
               )?.name
             }
           </p>
-          <p>Rating: {Math.round(movie.vote_average * 100) / 100}</p>
-          <p>Release Date: {movie.release_date}</p>
+          <p>
+            {searchLanguageConstants[selectedLanguage].rating}:{" "}
+            {Math.round(movie.vote_average * 100) / 100}
+          </p>
+          <p>
+            {searchLanguageConstants[selectedLanguage].releaseDate}:{" "}
+            {movie.release_date}
+          </p>
         </div>
       </div>
     </div>
