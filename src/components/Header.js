@@ -57,7 +57,7 @@ const Header = () => {
       {userData.user && (
         <div className="flex">
           <select
-            className="mr-2 text-white bg-gray-700 hover:bg-slate-800 px-4 py-2 rounded-lg shadow-lg"
+            className="mr-2 flex-2 text-white bg-gray-700 hover:bg-slate-800 px-4 py-2 rounded-lg shadow-lg"
             onChange={(e) => dispatch(setLanguage(e.target.value))}
             value={selectedLanguage}
           >
@@ -68,24 +68,26 @@ const Header = () => {
             ))}
           </select>
           <button
-            className="mr-2 bg-purple-800 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-purple-900"
+            className="mr-2 flex-2 bg-purple-800 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-purple-900"
             onClick={toggleGptSearch}
           >
             {showGptSearch
               ? searchLanguageConstants[selectedLanguage].GPTSearch
               : "Home"}
           </button>
-          <img
-            src={userData?.user?.photoURL}
-            alt="usericon"
-            width="40"
-            className="rounded-full"
-          />
-          <div className="px-2 text-white">
-            <p>{userData?.user?.displayName}</p>
-            <button onClick={handleSignOut}>
-              ({searchLanguageConstants[selectedLanguage].signOut})
-            </button>
+          <div className="flex flex-2">
+            <img
+              src={userData?.user?.photoURL}
+              alt="usericon"
+              width="40"
+              className="rounded-full"
+            />
+            <div className="px-2 text-white">
+              <p>{userData?.user?.displayName}</p>
+              <button onClick={handleSignOut}>
+                ({searchLanguageConstants[selectedLanguage].signOut})
+              </button>
+            </div>
           </div>
         </div>
       )}
