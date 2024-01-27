@@ -58,6 +58,7 @@ const Header = () => {
           <select
             className="mr-2 text-white bg-gray-700 hover:bg-slate-800 px-4 py-2 rounded-lg shadow-lg"
             onChange={(e) => dispatch(setLanguage(e.target.value))}
+            value={selectedLanguage}
           >
             {SUPPORTED_LANGUAGES.map((language) => (
               <option value={language.identifier}>{language.name}</option>
