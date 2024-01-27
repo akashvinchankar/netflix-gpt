@@ -71,7 +71,7 @@ const Header = () => {
             className="mr-2 flex-2 bg-purple-800 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-purple-900"
             onClick={toggleGptSearch}
           >
-            {showGptSearch
+            {!showGptSearch
               ? searchLanguageConstants[selectedLanguage].GPTSearch
               : "Home"}
           </button>

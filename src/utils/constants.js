@@ -32,3 +32,5 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "tl", name: "Tagalog", displayName: "Tagalog" },
   { identifier: "mr", name: "Marathi", displayName: "मराठी" },
 ];
+
+// export const OPENAI_KEY = "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";
