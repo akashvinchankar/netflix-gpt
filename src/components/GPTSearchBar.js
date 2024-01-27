@@ -1,11 +1,22 @@
 import React, { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { API_OPTIONS } from "../utils/constants";
+import { setGptSearchedMovies } from "../utils/gptSlice";
 import { searchLanguageConstants } from "../utils/languageConstants";
-import { useSelector } from "react-redux";
-import { openai } from "../utils/openai";
 
 const GPTSearchBar = () => {
+  const dispatch = useDispatch();
   const selectedLanguage = useSelector((store) => store.config.language);
   const searchText = useRef(null);
+
+  const tmdbMovieSearch = async (movie) => {
+    const tmdbResults = await fetch(
+      `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`,
+      API_OPTIONS
+    );
+    const tmdbResultsJSON = await tmdbResults.json();
+    return tmdbResultsJSON.results;
+  };
 
   const handleGPTSearch = async () => {
     // Make API call to GPT-3.5 Turbo model
@@ -19,6 +30,34 @@ const GPTSearchBar = () => {
     //   model: "gpt-3.5-turbo",
     // });
     // console.log(gptResults);
+
+    const gptMovies = searchText.current.value
+      ? searchText.current.value.split(",")
+      : [
+          "Phir Hera Pheri",
+          "Sholay",
+          "Dilwale Dulhania Le Jayenge",
+          "3 Idiots",
+          "Lagaan",
+          "Andaz Apna Apna",
+          "Gangs of Wasseypur",
+          "Dil Chahta Hai",
+          "Zindagi Na Milegi Dobara",
+          "Hera Pheri",
+        ];
+
+    // Make API call to TMDB
+    const tmdbResults = await Promise.all(
+      gptMovies.map(async (movie) => {
+        return await tmdbMovieSearch(movie);
+      })
+    );
+    dispatch(
+      setGptSearchedMovies({
+        movieNames: gptMovies,
+        movieResults: tmdbResults,
+      })
+    );
   };
 
   return (
