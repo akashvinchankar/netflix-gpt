@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { setLanguage } from "../utils/configSlice";
 import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
 import { auth } from "../utils/firebase";
-import { toggleSearch } from "../utils/gptSlice";
+import { setGptSearchedMovies, toggleSearch } from "../utils/gptSlice";
 import { addUser, removeUser } from "../utils/userSlice";
 import { searchLanguageConstants } from "../utils/languageConstants";
 
@@ -49,6 +49,7 @@ const Header = () => {
 
   const toggleGptSearch = () => {
     dispatch(toggleSearch());
+    dispatch(setGptSearchedMovies({ movieNames: null, movieResults: null }));
   };
 
   return (
