@@ -16,3 +16,19 @@ export const API_OPTIONS = {
 };
 
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
+
+export const SUPPORTED_LANGUAGES = [
+  { identifier: "en", name: "English" },
+  { identifier: "ja", name: "Japanese" },
+  { identifier: "ko", name: "Korean" },
+  { identifier: "zh", name: "Chinese" },
+  { identifier: "hi", name: "Hindi" },
+  { identifier: "es", name: "Spanish" },
+  { identifier: "fr", name: "French" },
+  { identifier: "de", name: "German" },
+  { identifier: "it", name: "Italian" },
+  { identifier: "ru", name: "Russian" },
+  { identifier: "pt", name: "Portuguese" },
+  { identifier: "tl", name: "Tagalog" },
+  { identifier: "mr", name: "Marathi" },
+];
