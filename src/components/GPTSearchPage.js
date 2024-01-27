@@ -8,7 +8,7 @@ const GPTSearchPage = () => {
     <div>
       <div>
         <img
-          className="absolute -z-10 opacity-95"
+          className="fixed -z-10 opacity-95"
           src={BACKGROUND_IMAGE}
           alt="background"
         />

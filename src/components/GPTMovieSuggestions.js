@@ -8,9 +8,9 @@ const GPTMovieSuggestions = () => {
   if (!movieNames) return null;
 
   return (
-    <div className="p-4 m-4 bg-black text-white">
+    <div className="p-4 m-4 bg-black text-white bg-opacity-75">
       <div>
-        {movieNames.map((movieName, index) => (
+        {movieNames?.map((movieName, index) => (
           <MovieList
             key={movieName}
             title={movieName}
